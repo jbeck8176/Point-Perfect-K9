@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Point Perfect K9 Academy</title>
+    <style>
+        /* --- COLOR PALETTE & VARIABLES --- */
+        :root {
+            --blaze-orange: #FF6600;
+            --slate-grey: #2F353B;
+            --light-grey: #E8E8E8;
+            --text-dark: #1A1A1A;
+            --text-light: #FFFFFF;
+        }
+
+        /* --- GLOBAL STYLES --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-grey);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            color: var(--blaze-orange);
+            margin-bottom: 15px;
+        }
+
+        /* --- DUCK CAMO THEME CLASS --- */
+        .camo-theme {
+            background-image: url('CamoBG.png');
+            background-repeat: repeat; 
+            background-color: #d2c8b8;
+            color: var(--text-light);
+        }
+
+        .camo-theme .content-container {
+            background-color: rgba(47, 53, 59, 0.92);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+        }
+
+        .camo-theme p, .camo-theme li {
+            color: var(--text-light);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background-color: var(--slate-grey);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--blaze-orange);
+        }
+
+        nav img {
+            height: 70px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--blaze-orange);
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .full-width-section {
+            max-width: 100%;
+            padding: 60px 20px;
+        }
+
+        .content-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* --- HERO / CAROUSEL (HOME) --- */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px auto;
+        }
+
+        /* Updated Carousel Styles */
+        .carousel-placeholder {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            height: 450px;
+            background-color: #000;
+            border: 5px solid var(--blaze-orange);
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out; /* Subtle crossfade transition */
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures images fill the box without stretching */
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.15); /* Subtle transparent background */
+            color: rgba(255, 255, 255, 0.5); /* Subtle text color */
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+        }
+
+        .prev-btn { left: 0; }
+        .next-btn { right: 0; }
+
+        /* --- TRAINING SUB-SECTIONS --- */
+        .training-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .training-card {
+            background-color: rgba(35, 40, 45, 0.8);
+            padding: 30px;
+            border-top: 5px solid var(--blaze-orange);
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .training-card h3 {
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+        }
+
+        .price-list {
+            background: rgba(0,0,0,0.4);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--blaze-orange);
+            color: var(--text-light);
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 3px;
+            margin-top: 30px;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e65c00;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--slate-grey);
+            color: var(--text-light);
+            text-align: center;
+            padding: 20px;
+            border-top: 3px solid var(--blaze-orange);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="#home">
+            <img src="logo.png" alt="Point Perfect K9 Logo">
+        </a>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#training">Training</a></li>
+            <li><a href="#breeding">Breeding</a></li>
+        </ul>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <header id="home" class="full-width-section camo-theme hero">
+        <div class="content-container">
+            <img src="logo_nodog.png" alt="Point Perfect K9 Academy" style="max-width: 80%; height: auto; margin-bottom: 15px;">
+            <p>Building strong bonds between owners and their dogs through foundational obedience and expert upland bird work.</p>
+            
+            <!-- REPLACED CAROUSEL HTML -->
+            <div class="carousel-placeholder">
+                <div class="carousel-slide active">
+                    <img src="images/IMG_0340.jpg" alt="Training Session">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/IMG_1710.jpg" alt="Sire and Dam attributes">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/IMG_1528.jpeg" alt="GSP on boat">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/IMG_1286.JPG" alt="GSP pointing in flowers">
+                </div>
+                
+                <button class="carousel-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="carousel-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
+            </div>
+            
+            <a href="#training" class="btn">Explore Our Training</a>
+        </div>
+    </header>
+
+    <!-- ABOUT US SECTION -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>At Point Perfect K9 Academy, we are dedicated to fostering the innate abilities of your hunting partners. With a deep passion for German Shorthaired Pointers and upland environments, we focus on clear, non-verbal communication and natural instincts.</p>
+        <p>Most issues seen in and out of the home are simple misunderstandings between dog and owner. Our goal is to bridge that gap, giving you the tools to succeed both in the living room and in the field.</p>
+    </section>
+
+    <!-- TRAINING SECTION -->
+    <section id="training" class="full-width-section camo-theme">
+        <div class="content-container">
+            <h2>Our Training Programs</h2>
+            <p>We approach dog training by building a solid foundation first, then exposing and refining your dog's natural ability in the field.</p>
+
+            <div class="training-grid">
+                
+                <!-- Obedience Sub-Page Content -->
+                <div class="training-card">
+                    <h3>Obedience Training</h3>
+                    <p>Focused on building the initial foundation of creating enjoyable dogs. With this foundation, you can navigate daily life in and out of the house maintaining control of your dog.</p>
+                    
+                    <p><strong>The Four Foundational "Walls":</strong></p>
+                    <ul>
+                        <li>Come when I call you (here)</li>
+                        <li>Stay where I put you (sit / kennel)</li>
+                        <li>Follow me (heel)</li>
+                        <li>Walk on a leash</li>
+                    </ul>
+                    
+                    <div class="price-list">
+                        <strong>Pricing & Details:</strong>
+                        <ul style="margin: 5px 0 0 0; padding-left: 20px;">
+                            <li>$80 per session (30-60 minutes)</li>
+                            <li>$50 per additional dog</li>
+                            <li>First 15 miles travel free ($10 per 15 miles after)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Upland Bird Work Sub-Page Content -->
+                <div class="training-card">
+                    <h3>Upland Bird Work</h3>
+                    <p>Building a dog who you want to enjoy the field with requires a calculated introduction to things the pup will experience in the field.</p>
+                    
+                    <ul>
+                        <li><strong>Bird Introduction:</strong> A safe, calculated introduction to harvested and live birds to build confidence.</li>
+                        <li><strong>Gun Introduction:</strong> Properly introducing gunfire to avoid gun-shy issues.</li>
+                        <li><strong>Hunt Steadiness:</strong> Refining your pointing dog to maintain point until you get into range.</li>
+                    </ul>
+                    
+                    <div class="price-list">
+                        <strong>Pricing & Details:</strong>
+                        <ul style="margin: 5px 0 0 0; padding-left: 20px;">
+                            <li>$45 per lesson (Bird, Gun, or Steadiness)</li>
+                            <li>Birds range from $6 to $30 each (most sessions require 5+)</li>
+                            <li>Additional travel fees may apply</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BREEDING PROGRAM SECTION -->
+    <section id="breeding">
+        <h2>Breeding Program</h2>
+        <p>Our breeding program is focused on producing high-quality German Shorthaired Pointers that excel in the upland field while remaining steady and affectionate companions at home. We prioritize health, intelligence, and a strong natural drive.</p>
+        
+        <hr style="border: 0; height: 1px; background: #ccc; margin: 30px 0;">
+        
+        <h3>Upcoming Litters</h3>
+        <p>We are currently accepting inquiries for our next breeding cycle. Puppies from our upcoming litter will be available to go to their new homes in <strong>September 2026</strong>.</p>
+        <p>If you are interested in adding a high-caliber pup to your family, please reach out to discuss availability, deposits, and sire/dam information.</p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 Point Perfect K9 Academy. All Rights Reserved.</p>
+    </footer>
+
+    <!-- CAROUSEL SCRIPT -->
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            if (index >= slides.length) {
+                currentSlideIndex = 0;
+            } else if (index < 0) {
+                currentSlideIndex = slides.length - 1;
+            } else {
+                currentSlideIndex = index;
+            }
+            
+            slides[currentSlideIndex].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlideIndex + direction);
+            resetInterval();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlideIndex + 1);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            // Rotates every 5 seconds
+            slideInterval = setInterval(nextSlide, 5000); 
+        }
+
+        // Initialize carousel on load
+        if(slides.length > 0) {
+            showSlide(currentSlideIndex);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+    </script>
+</body>
+</html>
