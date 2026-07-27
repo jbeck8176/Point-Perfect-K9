@@ -19,15 +19,23 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
+            padding-bottom: 60px; 
             background-color: var(--light-grey);
             color: var(--text-dark);
             line-height: 1.6;
             scroll-behavior: smooth;
         }
 
-        h1, h2, h3 {
+        h1, h2{
             color: var(--blaze-orange);
             margin-bottom: 15px;
+        }
+
+        h3 {
+            color: var(--slate-grey);
+            margin-bottom: 15px;
+            margin-top: -10px;
+            font-style: italic;
         }
 
         /* --- DUCK CAMO THEME CLASS --- */
@@ -47,6 +55,11 @@
 
         .camo-theme p, .camo-theme li {
             color: var(--text-light);
+        }
+
+        /* Make H3 text contrasting in camo theme */
+        .camo-theme h3 {
+            color: var(--light-grey);
         }
 
         /* --- NAVIGATION --- */
@@ -87,6 +100,21 @@
             color: var(--blaze-orange);
         }
 
+        /* HAMBURGER MENU STYLES (Hidden by default) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+        }
+
+        .menu-toggle .bar {
+            width: 30px;
+            height: 3px;
+            background-color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+
         /* --- SECTIONS --- */
         section {
             padding: 60px 20px;
@@ -116,7 +144,6 @@
             margin: 0 auto 30px auto;
         }
 
-        /* Updated Carousel Styles */
         .carousel-placeholder {
             position: relative;
             width: 100%;
@@ -135,7 +162,7 @@
             width: 100%;
             height: 100%;
             opacity: 0;
-            transition: opacity 1s ease-in-out; /* Subtle crossfade transition */
+            transition: opacity 1s ease-in-out; 
         }
 
         .carousel-slide.active {
@@ -146,15 +173,21 @@
         .carousel-slide img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures images fill the box without stretching */
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-slide img:hover {
+            transform: scale(1.02);
         }
 
         .carousel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.15); /* Subtle transparent background */
-            color: rgba(255, 255, 255, 0.5); /* Subtle text color */
+            background-color: rgba(0, 0, 0, 0.15);
+            color: rgba(255, 255, 255, 0.5);
             border: none;
             padding: 10px 15px;
             cursor: pointer;
@@ -170,6 +203,47 @@
 
         .prev-btn { left: 0; }
         .next-btn { right: 0; }
+
+        /* --- MODAL / LIGHTBOX STYLES --- */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 2000; 
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 3px solid var(--blaze-orange);
+            border-radius: 5px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--blaze-orange);
+            text-decoration: none;
+            cursor: pointer;
+        }
 
         /* --- TRAINING SUB-SECTIONS --- */
         .training-grid {
@@ -216,13 +290,107 @@
             background-color: #e65c00;
         }
 
-        /* --- FOOTER --- */
-        footer {
+        /* --- FLOATING FOOTER --- */
+        .floating-footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
             background-color: var(--slate-grey);
             color: var(--text-light);
-            text-align: center;
-            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 15px 20px;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.3);
+            z-index: 1500;
             border-top: 3px solid var(--blaze-orange);
+            box-sizing: border-box;
+        }
+
+        .floating-footer .footer-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .floating-footer a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .floating-footer a:hover {
+            color: var(--blaze-orange);
+        }
+
+        .floating-footer svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        /* --- RESPONSIVE / MOBILE STYLES --- */
+        @media (max-width: 768px) {
+            /* Toggle the hamburger menu on mobile */
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Convert the inline nav to a hidden dropdown */
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%; 
+                left: 0;
+                width: 100%;
+                background-color: var(--slate-grey);
+                border-bottom: 3px solid var(--blaze-orange);
+                padding: 15px 0;
+                text-align: center;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            }
+
+            /* The class activated by JavaScript */
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                padding: 15px 0;
+            }
+
+            .training-grid {
+                grid-template-columns: 1fr;
+            }
+            .carousel-placeholder {
+                height: 300px;
+            }
+            nav ul {
+                gap: 15px;
+                font-size: 0.9rem;
+            }
+            .close {
+                top: 10px;
+                right: 20px;
+            }
+            /* Adjust floating footer and body padding for stacked mobile view */
+            .floating-footer {
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+            }
+            body {
+                padding-bottom: 150px; 
+            }
         }
     </style>
 </head>
@@ -233,7 +401,15 @@
         <a href="#home">
             <img src="logo.png" alt="Point Perfect K9 Logo">
         </a>
-        <ul>
+        
+        <!-- Hamburger Menu Button -->
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <ul id="nav-list">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About Us</a></li>
             <li><a href="#training">Training</a></li>
@@ -245,9 +421,8 @@
     <header id="home" class="full-width-section camo-theme hero">
         <div class="content-container">
             <img src="logo_nodog.png" alt="Point Perfect K9 Academy" style="max-width: 80%; height: auto; margin-bottom: 15px;">
-            <p>Building strong bonds between owners and their dogs through foundational obedience and expert upland bird work.</p>
-            
-            <!-- REPLACED CAROUSEL HTML -->
+            <p><em>Building strong bonds between owners and their dogs through foundational obedience and expert upland bird work.</em></p>
+
             <div class="carousel-placeholder">
                 <div class="carousel-slide active">
                     <img src="images/IMG_0340.jpg" alt="Training Session">
@@ -265,6 +440,7 @@
                 <button class="carousel-btn prev-btn" onclick="changeSlide(-1)">&#10094;</button>
                 <button class="carousel-btn next-btn" onclick="changeSlide(1)">&#10095;</button>
             </div>
+            <p style="font-size: 0.9rem; color: #aaa; margin-top: 5px;">Tap or click an image to view full screen</p>
             
             <a href="#training" class="btn">Explore Our Training</a>
         </div>
@@ -273,22 +449,22 @@
     <!-- ABOUT US SECTION -->
     <section id="about">
         <h2>About Us</h2>
-        <p>At Point Perfect K9 Academy, we are dedicated to fostering the innate abilities of your hunting partners. With a deep passion for German Shorthaired Pointers and upland environments, we focus on clear, non-verbal communication and natural instincts.</p>
-        <p>Most issues seen in and out of the home are simple misunderstandings between dog and owner. Our goal is to bridge that gap, giving you the tools to succeed both in the living room and in the field.</p>
+        <h3>At Point Perfect K9 Academy, we know your dogs aren't just pets—they are cherished members of your family.</h3>
+        <p>Whether we are working with a driven hunting partner or a beloved household companion, our dedication lies in fostering their natural abilities and building a seamless bond between you and your dog.</p>
+        <p>We uniquely blend the lines of canine education, bringing the proven techniques, clear non-verbal communication, and instinct-driven methods we use with our hunting dogs directly into our everyday obedience training. Most issues seen in and out of the home stem from simple misunderstandings between dog and owner. Our goal is to bridge that gap, equipping you with the tools and confidence to succeed just as much in the living room as you do out in the field.</p>
     </section>
 
     <!-- TRAINING SECTION -->
     <section id="training" class="full-width-section camo-theme">
         <div class="content-container">
             <h2>Our Training Programs</h2>
-            <p>We approach dog training by building a solid foundation first, then exposing and refining your dog's natural ability in the field.</p>
+            <h3>We approach dog training by building a solid foundation first, then exposing and refining your dog's natural ability in the field.</h3>
 
             <div class="training-grid">
                 
-                <!-- Obedience Sub-Page Content -->
                 <div class="training-card">
                     <h3>Obedience Training</h3>
-                    <p>Focused on building the initial foundation of creating enjoyable dogs. With this foundation, you can navigate daily life in and out of the house maintaining control of your dog.</p>
+                    <p>Focused on building the initial foundation of creating enjoyable dogs. With this foundation, you can navigate daily life in and out of the house maintaining control of your dog. We've designed our obedience program after obtaining the industry obedience standard AKC Canine Good Citizen program.</p>
                     
                     <p><strong>The Four Foundational "Walls":</strong></p>
                     <ul>
@@ -308,7 +484,6 @@
                     </div>
                 </div>
 
-                <!-- Upland Bird Work Sub-Page Content -->
                 <div class="training-card">
                     <h3>Upland Bird Work</h3>
                     <p>Building a dog who you want to enjoy the field with requires a calculated introduction to things the pup will experience in the field.</p>
@@ -316,14 +491,16 @@
                     <ul>
                         <li><strong>Bird Introduction:</strong> A safe, calculated introduction to harvested and live birds to build confidence.</li>
                         <li><strong>Gun Introduction:</strong> Properly introducing gunfire to avoid gun-shy issues.</li>
-                        <li><strong>Hunt Steadiness:</strong> Refining your pointing dog to maintain point until you get into range.</li>
+                        <li><strong>Hunting Basics:</strong> Reinforcing the natural hunting instincts and behaviors in the field.</li>
+                        <li><strong>Hunt Steadiness:</strong> Refining your pointing dog to establish and maintain point until you get into range and beyond.</li>
+                        <li><strong>Hunt Test Preparation:</strong> A helping hand in finishing your dog and prepairing for hunt tests or just a season in the field.</li>
                     </ul>
                     
                     <div class="price-list">
                         <strong>Pricing & Details:</strong>
                         <ul style="margin: 5px 0 0 0; padding-left: 20px;">
                             <li>$45 per lesson (Bird, Gun, or Steadiness)</li>
-                            <li>Birds range from $6 to $30 each (most sessions require 5+)</li>
+                            <li>Birds range from $5 to $30 each (most sessions require 3+)</li>
                             <li>Additional travel fees may apply</li>
                         </ul>
                     </div>
@@ -336,25 +513,86 @@
     <!-- BREEDING PROGRAM SECTION -->
     <section id="breeding">
         <h2>Breeding Program</h2>
-        <p>Our breeding program is focused on producing high-quality German Shorthaired Pointers that excel in the upland field while remaining steady and affectionate companions at home. We prioritize health, intelligence, and a strong natural drive.</p>
-        
+        <h3>Our breeding program goal is simple: Produce true family companion hunting dogs.</h3>
+
+        <img src="images/IMG_1738.jpeg" alt="German Shorthaired Pointer dam resting on a couch watching over her litter of sleeping puppies" style="width: 100%; max-width: 800px; height: auto; border-radius: 5px; margin: 20px auto; display: block; border: 3px solid var(--blaze-orange); box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+
+        <p>Our focus is on producing high-quality German Shorthaired Pointers that excel in the upland field while remaining affectionate companions at home. We prioritize health, temperament, intelligence, and a strong natural drive. These aren't dogs that <em>can</em> live in our homes — <em>they do</em>! They're family members first, hunting partners second, and they're expected to excel at both.</p>
+
         <hr style="border: 0; height: 1px; background: #ccc; margin: 30px 0;">
         
         <h3>Upcoming Litters</h3>
         <p>We are currently accepting inquiries for our next breeding cycle. Puppies from our upcoming litter will be available to go to their new homes in <strong>September 2026</strong>.</p>
-        <p>If you are interested in adding a high-caliber pup to your family, please reach out to discuss availability, deposits, and sire/dam information.</p>
+        <p>If you are interested in adding a puppy to your family, please reach out to discuss availability, deposits, and sire/dam information.</p>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2026 Point Perfect K9 Academy. All Rights Reserved.</p>
+    <!-- FLOATING FOOTER -->
+    <footer class="floating-footer">
+        <!-- Email -->
+        <div class="footer-item">
+            <a href="mailto:pointperfectk9@gmail.com">
+                <svg viewBox="0 0 24 24"><path d="M20,4H4C2.9,4,2,4.9,2,6v12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V6C22,4.9,21.1,4,20,4z M20,8l-8,5L4,8V6l8,5l8-5V8z"/></svg>
+                pointperfectk9@gmail.com
+            </a>
+        </div>
+        
+        <!-- Phone Number -->
+        <div class="footer-item">
+            <a href="tel:3307371706">
+                <svg viewBox="0 0 24 24"><path d="M6.62,10.79c1.44,2.83,3.76,5.14,6.59,6.59l2.2-2.2c0.27-0.27,0.67-0.36,1.02-0.24c1.12,0.37,2.33,0.57,3.57,0.57c0.55,0,1,0.45,1,1V20c0,0.55-0.45,1-1,1c-9.39,0-17-7.61-17-17c0-0.55,0.45-1,1-1h3.5c0.55,0,1,0.45,1,1c0,1.25,0.2,2.45,0.57,3.57c0.11,0.35,0.03,0.74-0.25,1.02L6.62,10.79z"/></svg>
+                (330)737-1706
+            </a>
+        </div>
+
+        <!-- Facebook -->
+        <div class="footer-item">
+            <a href="https://www.facebook.com/profile.php?id=61557221413372" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24"><path d="M12,2C6.48,2,2,6.48,2,12c0,5,3.66,9.12,8.44,9.88v-6.99h-2.54V12h2.54V9.8c0-2.51,1.5-3.89,3.77-3.89c1.09,0,2.23,0.2,2.23,0.2v2.45h-1.26c-1.24,0-1.63,0.77-1.63,1.56V12h2.77l-0.44,2.89h-2.33v6.99C18.34,21.12,22,17,22,12C22,6.48,17.52,2,12,2z"/></svg>
+                Facebook
+            </a>
+        </div>
+
+        <!-- Instagram -->
+        <div class="footer-item">
+            <a href="https://www.instagram.com/point_perfect_k9/" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2,22,4.6,22,7.8v8.4c0,3.2-2.6,5.8-5.8,5.8H7.8C4.6,22,2,19.4,2,16.2V7.8C2,4.6,4.6,2,7.8,2z M7.8,4C5.7,4,4,5.7,4,7.8v8.4C4,18.3,5.7,20,7.8,20h8.4c2.1,0,3.8-1.7,3.8-3.8V7.8C20,5.7,18.3,4,16.2,4H7.8z M12,7c2.8,0,5,2.2,5,5c0,2.8-2.2,5-5,5c-2.8,0-5-2.2-5-5C7,9.2,9.2,7,12,7z M12,9c-1.7,0-3,1.3-3,3c0,1.7,1.3,3,3,3c1.7,0,3-1.3,3-3C15,10.3,13.7,9,12,9z M17.2,5.8c0.5,0,0.9,0.4,0.9,0.9c0,0.5-0.4,0.9-0.9,0.9c-0.5,0-0.9-0.4-0.9-0.9C16.3,6.2,16.7,5.8,17.2,5.8z"/></svg>
+                Instagram
+            </a>
+        </div>
     </footer>
 
-    <!-- CAROUSEL SCRIPT -->
+    <!-- LIGHTBOX MODAL -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="expandedImg">
+    </div>
+
+    <!-- CAROUSEL, MODAL & MOBILE MENU SCRIPT -->
     <script>
+        // --- Mobile Menu Functionality --- //
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        
+        // Toggle menu visibility when hamburger is clicked
+        mobileMenu.addEventListener('click', function() {
+            navList.classList.toggle('active');
+        });
+
+        // Close menu automatically when a navigation link is clicked
+        navList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+
+        // --- Original Carousel Functionality --- //
         let currentSlideIndex = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         let slideInterval;
+
+        // Modal Elements
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("expandedImg");
 
         function showSlide(index) {
             slides.forEach(slide => slide.classList.remove('active'));
@@ -381,7 +619,6 @@
 
         function resetInterval() {
             clearInterval(slideInterval);
-            // Rotates every 5 seconds
             slideInterval = setInterval(nextSlide, 5000); 
         }
 
@@ -390,6 +627,29 @@
             showSlide(currentSlideIndex);
             slideInterval = setInterval(nextSlide, 5000);
         }
+
+        // Add Click Events to Carousel Images for Modal
+        const carouselImages = document.querySelectorAll('.carousel-slide img');
+        carouselImages.forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = "flex"; // Using flex to perfectly center the image
+                modalImg.src = this.src;
+                clearInterval(slideInterval); // Pause rotation while viewing
+            });
+        });
+
+        // Close Modal Function
+        function closeModal() {
+            modal.style.display = "none";
+            resetInterval(); // Restart rotation when closed
+        }
+
+        // Close Modal when clicking outside the image
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
