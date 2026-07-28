@@ -255,7 +255,7 @@
             cursor: pointer;
         }
 
-        /* --- TRAINING SUB-SECTIONS --- */
+        /* --- TRAINING / DOGS SUB-SECTIONS --- */
         .training-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -274,6 +274,25 @@
         .training-card h3 {
             border-bottom: 1px solid #555;
             padding-bottom: 10px;
+        }
+        
+        .dog-photo-placeholder {
+            width: 100%; 
+            height: 250px; 
+            background-color: #1A1A1A; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            border-radius: 5px; 
+            margin-bottom: 15px; 
+            border: 1px solid #555;
+        }
+
+        .dog-photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image fills the box without distorting the aspect ratio */
+            border-radius: 4px; /* Keeps the image inside the rounded corners of the container */
         }
 
         .price-list {
@@ -439,6 +458,7 @@
             <li><a href="#about">About Us</a></li>
             <li><a href="#training">Training</a></li>
             <li><a href="#breeding">Breeding</a></li>
+            <li><a href="#our-dogs">Our Dogs</a></li>
         </ul>
     </nav>
 
@@ -453,7 +473,22 @@
                     <img src="images/IMG_1286.JPG" alt="GSP pointing in flowers">
                 </div>
                 <div class="carousel-slide">
+                    <img src="images/IMG_4967.jpeg" alt="Pete">
+                </div>
+                <div class="carousel-slide">
                     <img src="images/IMG_0340.jpg" alt="Training Session">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/IMG_0628.jpeg" alt="Youth Hunt">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/IMG_3120.jpeg" alt="Brandi">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/IMG_0197.jpeg" alt="Shadow Lake">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/IMG_0551.jpeg" alt="Shadow backing Jinx">
                 </div>
                 <div class="carousel-slide">
                     <img src="images/IMG_1710.JPG" alt="Sire and Dam attributes">
@@ -549,6 +584,54 @@
         <h3>Upcoming Litters</h3>
         <p>We are currently accepting inquiries for our next breeding cycle. Puppies from our upcoming litter will be available to go to their new homes in <strong>September 2026</strong>.</p>
         <p>If you are interested in adding a puppy to your family, please reach out to discuss availability, deposits, and sire/dam information.</p>
+    </section>
+
+    <!-- OUR DOGS SECTION -->
+    <section id="our-dogs" class="full-width-section camo-theme">
+        <div class="content-container">
+            <h2>Our Dogs</h2>
+            <h3>Meet the Point Perfect pack.</h3>
+
+            <div class="training-grid">
+                
+                <!-- Max -->
+                <div class="training-card">
+                    <h3>Max</h3>
+                    <div class="dog-photo-placeholder">
+                        <img src="images/IMG_8731.jpeg" alt="Max">
+                    </div>
+                    <p>This is Max, our certified good boy brown dog! A Stark County Humane Society alum (class of late 2019), Max is the true alpha of our pack. He may not be the senior resident, but he's definitely the old soul of the house. His daily schedule is packed with high-priority tasks: keeping the couch firmly held down, securing the perimeter from the back deck, and playing trash panda whenever the opportunity strikes.</p>
+                </div>
+
+                <!-- Huk -->
+                <div class="training-card">
+                    <h3>Huk</h3>
+                    <div class="dog-photo-placeholder">
+                        <img src="images/IMG_2866.jpeg" alt="Huk">
+                    </div>
+                    <p>This is Huk, our snuggle monster wrapped in hunters fur! A Summit County Animal Control alum (class of April 2024), Huk is the true velcro dog of our pack. He may not be the longest-standing resident, but he's definitely the oldest in age and our ultimate movie-on-the-couch companion. His daily schedule is packed with high-priority tasks: eating water, harassing anything on wheels, and roaming free in the bird field without a care in the world whenever the opportunity strikes.</p>
+                </div>
+
+                <!-- Shadow -->
+                <div class="training-card">
+                    <h3>Shadow</h3>
+                    <div class="dog-photo-placeholder">
+                        <img src="images/IMG_6051.jpeg" alt="Blake and Shadow">
+                    </div>
+                    <p>This is Shadow (Chaylors Dark Side of the Moon CGC JH), the high-performance athlete of our pack! Bred by Chaylor Kennels (class of October 2023) and coming to us by way of a family member. Shadow officially joined the household in November 2024 after graduating from our obedience program. He descends from a long line of highly decorated field trial dogs, and it absolutely shows in everything he does. His daily schedule is packed with high-priority tasks: stealing stuffies, counter surfing, and  covering lots of ground. When he's not being a nuisance in the house he's busy making us proud showing off an absolute cannon for a nose, and style for days out in the field. His competitive bird dog career is off to a promising start having earned his AKC CGC and Jr Hunter title with our son Blake expertly serving as his handler.</p>
+                </div>
+
+                <!-- Jinx -->
+                <div class="training-card">
+                    <h3>Jinx</h3>
+                    <div class="dog-photo-placeholder">
+                        <img src="images/IMG_1077.JPG" alt="Jinx">
+                    </div>
+                    <p>This is Jinx (Arps Winter Hijinks CGCA SH), our founding pointer princess! Arp Kennels alum (class of 2023). Jinx is the only dog in the house we purchased from a breeder. She is the true royal highness of Point Perfect K9. She may not be a fully crowned AKC Master Hunter quite yet herself (just one pass away!), but she comes from a long line of AKC Master Hunters and NAVHAD Versatile Champions. Her daily schedule is packed with high-priority tasks: remaining professionally glued to Jeff, snoozing in the office on her dog bed, and scanning the family for the fastest snack. When she's not playing family dog she's out showing off doing what she does best. Don't let her calm temperament fool you this dog HUNTS! She's our most requested guide dog and always a trial contender. She boasts the nose, intelegence, and drive to make her a birds worst nightmare!</p>
+                </div>
+
+            </div>
+        </div>
     </section>
 
     <!-- FLOATING FOOTER -->
